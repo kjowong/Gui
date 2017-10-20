@@ -9,11 +9,11 @@ import pprint
 
 pp = pprint.PrettyPrinter(indent=4)
 def create_match_list(foursquare_list=[], zomato_list=[]):
-    pp.pprint(foursquare_list)
-    print("LEN-FS", len(foursquare_list))
-    print("----------ZOMATO")
-    pp.pprint(zomato_list)
-    print("LEN-Z", len(zomato_list))
+#   pp.pprint(foursquare_list)
+#   print("LEN-FS", len(foursquare_list))
+#   print("----------ZOMATO")
+#   pp.pprint(zomato_list)
+#   print("LEN-Z", len(zomato_list))
     main_list = []
     match_list = []
     no_match_list = []
@@ -39,18 +39,24 @@ def create_match_list(foursquare_list=[], zomato_list=[]):
                 match_list.append(new_restaurant)
                 foursquare_list.remove(restaurant_fs)
                 zomato_list.remove(restaurant_z)
+    count1 = 0
     for no_match_fs in foursquare_list:
         no_match_fs['composite'] = 0
         no_match_list.append(no_match_fs)
+        count1+=1
     for no_match_z in zomato_list:
         no_match_z['composite'] = 0
         no_match_list.append(no_match_z)
+        count1+=1
     main_list = match_list + no_match_list
-    print("LEN-FS-NEW", len(foursquare_list))
-    print("LEN-Z-NEW", len(zomato_list))
-    print("-------------MAIN")
-    pp.pprint(main_list)
-    print("LEN-MAIN", len(main_list))
+    print(len(main_list))
+    print(count1)
+#print("LEN-FS-NEW", len(foursquare_list))
+#   print("LEN-Z-NEW", len(zomato_list))
+#   print("-------------MAIN")
+#   pp.pprint(main_list)
+    return main_list
+#   print("LEN-MAIN", len(main_list))
 if __name__ == "__main__":
     foursquare_list = get_foursquare()
     zomato_list = get_zomato()

@@ -26,6 +26,8 @@ def get_zomato():
         restaurant['standard_rating'] = standardized_rating
         rating_weight = round((reviews_count * 1.35), 2)
         restaurant['rating_weight'] = rating_weight
+        price_range = info.get('price_range')
+        restaurant['price_range'] = price_range
         try:
             for place in bing.geocode(address, exactly_one=False, timeout=3):
                 location = str(place)

@@ -7,7 +7,6 @@ from pyzomato import Pyzomato
 from geopy import geocoders
 import pprint
 
-pp = pprint.PrettyPrinter(indent=4)
 def create_match_list(foursquare_list=[], zomato_list=[]):
 
     main_list = []
@@ -30,6 +29,7 @@ def create_match_list(foursquare_list=[], zomato_list=[]):
                 new_restaurant['composite'] = composite
                 new_restaurant['standard_rating'] = 0
                 new_restaurant['rating_weight'] = 0
+                new_restaurant['price_range'] = restaurant_fs['price_range']
                 match_list.append(new_restaurant)
                 foursquare_list.remove(restaurant_fs)
                 zomato_list.remove(restaurant_z)

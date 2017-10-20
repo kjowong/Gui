@@ -16,7 +16,7 @@ def get_foursquare():
         ll = '37.792085, -122.399368',
         section = 'food',
         limit = 15
-)
+    )
 
 
     yelp_params = []
@@ -32,7 +32,8 @@ def get_foursquare():
             street = address_field.get('address')
             city = (address_field.get('formattedAddress')[1]).replace(",", "")[:-5]
             restaurant = {}
-            price = place.get('venue').get('price')
+            price_range = place.get('venue').get('price').get('tier')
+            restaurant['price_range'] = price_range
             rating = place.get('venue').get('rating')
             reviews_count = place.get('venue').get('ratingSignals')
             restaurant['total_reviews'] = reviews_count

@@ -9,8 +9,6 @@ def get_zomato():
     bing_key = "bNV4gwzuDF0BY7hRBr2D~SwYlwf_NvSxlbZ36oGsTdA~AthfnABkus6e2oSBb4W9Q9_7yHrFh1cHbreVFmsPad2apAgjYqLYZi8E2iSyiJk-"
     bing = geocoders.Bing(bing_key)
 
-    pp = pprint.PrettyPrinter(indent=4)
-
     yelp_params = []
 
     p = Pyzomato('a27dcc3db4574a4ae90e9852091e736c')
@@ -19,9 +17,6 @@ def get_zomato():
     for place in restaurants:
         restaurant = {}
         info = place.get('restaurant')
-#        print("INFO", info)
-#    print(info.get('user_rating').get('votes'), info.get('user_rating').get('aggregate_rating'))
-#       print("Price:  ", info.get('price_range'))
         name = (info.get('name'))
         address = (info.get('location').get('address'))[:-1]
         rating = float(info.get('user_rating').get('aggregate_rating'))

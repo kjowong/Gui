@@ -27,9 +27,7 @@ def get_foursquare():
         posts = (post.get('items'))
         for place in posts:
             name = (place.get('venue').get('name'))
-# print(name)
             address_field = place.get('venue').get('location')
-#           print(address_field)
             postal_code = address_field.get('postalCode')
             street = address_field.get('address')
             city = (address_field.get('formattedAddress')[1]).replace(",", "")[:-5]
@@ -44,9 +42,7 @@ def get_foursquare():
             restaurant['rating_weight'] = rating_weight
             try:
                 address = street + " " +  city + " " + postal_code
-#               print("address", address)
             except:
-#               print("Removing from list\n")
                 continue
             try:
                 bing_location = bing.geocode(address, exactly_one=True, timeout=3)
@@ -55,13 +51,10 @@ def get_foursquare():
                     restaurant['name'] = name
                     restaurant['location'] = address
                     yelp_params.append(restaurant)
-#                       print(address)
                 else:
                     restaurant['name'] = name
                     restaurant['location'] = location
                     yelp_params.append(restaurant)
-#                       print(location)
-#                       print("----------------------")
             except Exception as e:
                 print("ERROR", e)
         return yelp_params

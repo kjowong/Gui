@@ -9,8 +9,6 @@ import pprint
 
 pp = pprint.PrettyPrinter(indent=4)
 def create_match_list(foursquare_list=[], zomato_list=[]):
-    foursquare_list = get_foursquare()
-    zomato_list = get_zomato()
 #   pp.pprint(foursquare_list)
 #   print("LEN-FS", len(foursquare_list))
 #   print("----------ZOMATO")
@@ -60,8 +58,7 @@ def create_match_list(foursquare_list=[], zomato_list=[]):
 #   pp.pprint(main_list)
     return main_list
 #   print("LEN-MAIN", len(main_list))
-if __name__ == "__main__":
-    
+if __name__ == "__main__":    
 #    foursquare_list = get_foursquare()
 #    zomato_list = get_zomato()
      create_match_list(foursquare_list, zomato_list)

@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
+from foursquare_remove_trucks import get_foursquare
+from zomato_name_addr import get_zomato
 from match_list import create_match_list
 import requests, json
 from pymongo import MongoClient
 import pprint
 
 def aggregate_yelp(main_list=[]):
-    print(main_list)
     client_id = 'SQqV-EaSklWJV9089z-LRg'
     client_secret = 'QkIzkk76Lv3wOWKK8lSgU794edzjo96sKfFrDolT4c6hHWivZfoZU1WKDLof9WII'
     data = {'grant_type': 'client_credentials',
@@ -42,6 +43,7 @@ def aggregate_yelp(main_list=[]):
                 print("ID: ", business_id, ", phone:", phone_num, ", price: ", price, ", rating: ", rating, ", image: ", image, ", reviews: ", reviews_count, ", coord: ", coordinates)
 
 if __name__ == "__main__":
-    main_list = create_match_list()
+    foursquare_list = get_foursquare()
+    zomato_list = get_zomato()
+    main_list = create_match_list(foursquare_list, zomato_list)
     aggregate_yelp(main_list)
-

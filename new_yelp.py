@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 
+from price_coord_passer import price_coord_func
 from foursquare_remove_trucks import get_foursquare
 from zomato_name_addr import get_zomato
 from match_list import create_match_list
 import requests, json
 from pymongo import MongoClient
 import pprint
+import sys
 
 def aggregate_yelp(main_list=[]):
     client_id = 'SQqV-EaSklWJV9089z-LRg'
@@ -63,7 +65,10 @@ def aggregate_yelp(main_list=[]):
         pprint.pprint(yelp_list)
 
 if __name__ == "__main__":
-    foursquare_list = get_foursquare()
+    args = price_coord_func(*sys.argv[1:])
+    price = args[0]
+    coords = args[1]
+    foursquare_list = get_foursquare(price, latitude = coords.get('latitude'), longitude = coords.get('longitude'))
     zomato_list = get_zomato()
     main_list = create_match_list(foursquare_list, zomato_list)
     aggregate_yelp(main_list)

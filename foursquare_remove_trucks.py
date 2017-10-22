@@ -4,9 +4,11 @@ import json, requests
 from pymongo import MongoClient
 from geopy import geocoders
 import pprint
+import sys
 from sys import argv
+from price_coord_passer import price_coord_func
 
-def get_foursquare():
+def get_foursquare(price, **kwargs):
     url = 'https://api.foursquare.com/v2/venues/explore'
     bing_key = "bNV4gwzuDF0BY7hRBr2D~SwYlwf_NvSxlbZ36oGsTdA~AthfnABkus6e2oSBb4W9Q9_7yHrFh1cHbreVFmsPad2apAgjYqLYZi8E2iSyiJk-"
     bing = geocoders.Bing(bing_key)
@@ -14,10 +16,10 @@ def get_foursquare():
         client_id='ODAOUA2ZUGYKSAQMGSED4HVLAGQJZF4LU1FNEESGR2KY20CL',
         client_secret='TBGFJYKBYEUHORFJH3MCBB2DKP1SFBJ4ZUK2T3TVHGKBIHYD',
         v='20171110',
-        ll = '37.792085, -122.399368',
+        ll = '{}, {}'.format(kwargs.get('latitude'), kwargs.get('longitude')),
         section = 'food',
         limit = 15,
-        price = '2,3'
+        price = price
     )
 
     yelp_params = []
@@ -62,5 +64,7 @@ def get_foursquare():
         return yelp_params
 
 if __name__ == "__main__":
-    get_foursquare()
-
+    args = price_coord_func(*sys.argv[1:])
+    price = args[0]
+    coords = args[1]
+    get_foursquare(price, latitude = coords.get('latitude'), longitude = coords.get('longitude'))

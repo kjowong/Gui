@@ -3,18 +3,15 @@
 import sys
 from geopy.geocoders import GoogleV3
 
-def price_coord_func(*args):
+def price_coord_func(zip_var, price_tier):
 
     geolocator = GoogleV3()
     coordinates = {}
-    zip_code = args[0]
-    if len(sys.argv) > 1:
-        price = args[1]
 
-    location = geolocator.geocode(zip_code)
+    location = geolocator.geocode(zip_var)
     coordinates['latitude'] = location.latitude
     coordinates['longitude'] = location.longitude
-    return(price, coordinates)
+    return(price_tier, coordinates)
 
 if __name__ == '__main__':
     func_passer(*sys.argv[:])

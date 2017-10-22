@@ -60,8 +60,7 @@ def aggregate_yelp(main_list=[]):
                 item['composite'] = round(new_composite_fsy, 2)
                 item['total_reviews'] = (item['total_reviews'] + reviews_count)
         yelp_list = main_list
-    print("---------")
-    pprint.pprint(yelp_list)
+        pprint.pprint(yelp_list)
 
 if __name__ == "__main__":
     foursquare_list = get_foursquare()

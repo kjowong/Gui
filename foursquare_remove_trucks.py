@@ -4,6 +4,7 @@ import json, requests
 from pymongo import MongoClient
 from geopy import geocoders
 import pprint
+from sys import argv
 
 def get_foursquare():
     url = 'https://api.foursquare.com/v2/venues/explore'
@@ -15,9 +16,9 @@ def get_foursquare():
         v='20171110',
         ll = '37.792085, -122.399368',
         section = 'food',
-        limit = 15
+        limit = 15,
+        price = '2,3'
     )
-
 
     yelp_params = []
 

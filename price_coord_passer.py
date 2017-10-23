@@ -12,7 +12,6 @@ def price_coord_func(zip_var, price_tier):
     location = geolocator.geocode(zip_var)
     coordinates['latitude'] = location.latitude
     coordinates['longitude'] = location.longitude
-    print(coordinates)
     return(price_tier, coordinates)
 
 if __name__ == '__main__':

@@ -12,31 +12,34 @@ from datetime import datetime
 import sys
 
 def create_database(yelp_list=[], *args):
-    print("-----ZIP CODE: ", args[0], "------PRICE TIER: ", args[1])
-    pprint.pprint(yelp_list)
-#pprint.pprint(yelp_list)
-#    print(datetime.now())
+    client = MongoClient('mongodb://localhost:27017/')
+    db = client.guiscore
+
+    for listing in yelp_list:
+        print("------------Adding to database-----------------")
+        match_key = {}
+        match_key['location'] = listing.get('location')
+        match_key['name'] = listing.get('name')
+        result = db.restaurants.update(match_key, listing, upsert=True)
     
-    # current_date = datetime.now()
-    # client = MongoClient('mongodb://localhost:27017/')
-    # current_date = str(current_date)
-    # db = client.current_date
- 
-
-
 if __name__ == "__main__":
     zip_codes = ['94130', '94133', '94111', '94123', '94129', '94121', '94118', '94115', '94109', '94108', '94104', '94105', '94102', '94103', '94158', '94107', '94110', '94114', '94117', '94124', '94134', '94112', '94127', '94131', '94116', '94132', '94122']
-    price_range = ['1', '2', '3', '4', '1,2', '1,3', '1,4', '2,3', '2,4', '3,4', '1,2,3', '1,2,4', '1,3,4', '2,3,4', '1,2,3,4']
+    price_range = ['1', '2', '3', '4']
     for zip_code in zip_codes:
         for price in price_range:
-            zip_var = zip_code
-            price_tier = price
-            args = price_coord_func(zip_var, price_tier)
+            current_date = datetime.now().strftime('%Y-%m-%d')
+            zip_dict = {}
+            date_obj = {}
+            zip_dict['zip_code'] = zip_code
+            date_obj['updated_at'] = str(current_date)
+            args = price_coord_func(zip_code, price)
             price = args[0]
             coords = args[1]
             foursquare_list = get_foursquare(price, latitude = coords.get('latitude'), longitude = coords.get('longitude'))
             zomato_list = get_zomato()
             main_list = create_match_list(foursquare_list, zomato_list)
             yelp_list = aggregate_yelp(main_list)
-            print(zip_var, price_tier)
-            create_database(yelp_list, zip_var, price_tier)
+            for listing in yelp_list:
+                listing.update(zip_dict)
+                listing.update(date_obj)
+            create_database(yelp_list, zip_code, price)

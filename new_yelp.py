@@ -77,7 +77,7 @@ def aggregate_yelp(main_list=[]):
                     item['total_reviews'] = (item['total_reviews'] + reviews_count)
             yelp_list = main_list
             pprint.pprint(yelp_list)
-            return yelp_list
+        return yelp_list
 
     else:
         print("--------------Print if empty yelp list from new_yelp.py-------------")

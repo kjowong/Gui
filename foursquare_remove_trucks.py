@@ -18,7 +18,7 @@ def get_foursquare(price, **kwargs):
         v='20171110',
         ll = '{}, {}'.format(kwargs.get('latitude'), kwargs.get('longitude')),
         section = 'food',
-        limit = 15,
+        limit = 5,
         price = price
     )
 

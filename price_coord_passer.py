@@ -1,17 +1,19 @@
 #!/usr/bin/python3
 
 import sys
-from geopy.geocoders import GoogleV3
+from geopy import geocoders
 
 def price_coord_func(zip_var, price_tier):
 
-    geolocator = GoogleV3()
+    bing_key = "bNV4gwzuDF0BY7hRBr2D~SwYlwf_NvSxlbZ36oGsTdA~AthfnABkus6e2oSBb4W9Q9_7yHrFh1cHbreVFmsPad2apAgjYqLYZi8E2iSyiJk-"
+    geolocator = geocoders.Bing(bing_key)
     coordinates = {}
 
     location = geolocator.geocode(zip_var)
     coordinates['latitude'] = location.latitude
     coordinates['longitude'] = location.longitude
+    print(coordinates)
     return(price_tier, coordinates)
 
 if __name__ == '__main__':
-    func_passer(*sys.argv[:])
+    price_coord_func(*sys.argv[:])

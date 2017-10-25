@@ -16,7 +16,7 @@ def get_listings():
  
     for listings in db.restaurants.find({"zip_code" : "94965"}):
         my_list.append(listings)
-    return json.dump(my_list)
+    return json.dumps(my_list)
     # if zip_code is not None and price is None:
     #     for doc in db.restaurants.find({'zip_code':'{}'.format(zip_code)}):
     #         return(doc.get('name'), doc.get('composite'), doc.get('location'))

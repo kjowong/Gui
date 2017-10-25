@@ -15,7 +15,6 @@ def query_listing(*args):
                                       'price_range':int('{:d}'.format(
                                        int(args[1])))}):
             print(doc)
-    
 if __name__ == "__main__":
     query_listing(*sys.argv[1:])
 

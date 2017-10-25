@@ -29,7 +29,7 @@ def get_zomato():
         price_range = info.get('price_range')
         restaurant['price_range'] = price_range
         try:
-            for place in bing.geocode(address, exactly_one=False, timeout=3):
+            for place in bing.geocode(address, exactly_one=False, timeout=5):
                 location = str(place)
             if location is None:
                 restaurant['name'] = name

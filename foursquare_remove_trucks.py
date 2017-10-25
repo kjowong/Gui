@@ -18,7 +18,7 @@ def get_foursquare(price, **kwargs):
         v='20171110',
         ll = '{}, {}'.format(kwargs.get('latitude'), kwargs.get('longitude')),
         section = 'food',
-        limit = 5,
+        limit = 2,
         price = price
     )
 
@@ -49,7 +49,7 @@ def get_foursquare(price, **kwargs):
             except:
                 continue
             try:
-                bing_location = bing.geocode(address, exactly_one=True, timeout=3)
+                bing_location = bing.geocode(address, exactly_one=True, timeout=5)
                 location = str(bing_location)
                 if location is None:
                     restaurant['name'] = name

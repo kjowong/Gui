@@ -36,11 +36,13 @@ def get_foursquare(price, **kwargs):
             city = (address_field.get('formattedAddress')[1]).replace(",", "")[:-5]
             restaurant = {}
             price_range = place.get('venue').get('price').get('tier')
-            restaurant['price_range'] = price_range
             rating = place.get('venue').get('rating')
+            if (rating is None):
+                break
+            restaurant['price_range'] = price_range
             reviews_count = place.get('venue').get('ratingSignals')
             restaurant['zip_code'] = postal_code
-            restaurant['total_reviews'] = reviews_count
+            restaurant['total_reviews'] = reviews_count 
             standardized_rating = round((rating/10), 2)
             restaurant['standard_rating'] = standardized_rating
             rating_weight = round((reviews_count * 1.35), 2)

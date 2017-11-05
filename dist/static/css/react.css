@@ -1,0 +1,285 @@
+/*! Start of css to react components
+    2017
+ **/
+
+/* Body Tag */
+body {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
+
+/* Mast head - burger background*/
+header.masthead {
+  height: 800px;
+  background-color: white;
+}
+
+.row {
+  margin: 0;
+}
+
+/* Main react component, div root*/
+div#root {
+  width: 100%;
+}
+
+/* Styling of select dropdown */
+select.dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  border: 0 !important;
+  background: none;
+  background-image: none;
+  letter-spacing: 2px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 0 0 1em;
+  color: #fff;
+  cursor: pointer;
+}
+
+select.dropdown::-ms-expand {
+  display: none;
+}
+
+select.dropdown:focus {
+  outline: none;
+}
+
+/* Styling of main div that holds search, price components */
+div.price-search-results {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+
+/* Div to hold price component */
+div.price-div {
+   max-width: 125px!important;
+   position: relative;
+   display: block;
+   width: 20em;
+   height: 3em;
+   line-height: 3;
+   background: #ffc63a;
+   overflow: hidden;
+   border-radius: .25em;
+   left: 6px;
+   z-index: 1;
+}
+
+div.price-div::after {
+  font-family: "FontAwesome";
+  content: '\f107';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1em;
+  background: #ffc63a;
+  pointer-events: none;
+  font-size: 20px;
+  line-height: 48px;
+}
+
+div.price-div:hover::after {
+  color: #f39c12;
+}
+
+div.price-div::after {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+
+/* Style to search component */
+div.search {
+   display: flex;
+   width: 30%;
+   top: 50%;
+   left: 50%;
+}
+
+div.search-send {
+  position: relative;
+}
+
+input.search-input {
+  float: left;
+  width: 25.5rem;
+  height: 3.00rem;
+  border-radius: 5px;
+  outline: none;
+  opacity: 0.7;
+  padding-left: 20px;
+  border: none;
+}
+
+input.search-input:focus {
+  color: #777777;
+}
+
+button.search-button {
+  position: absolute;
+  right: -35px;
+  width: 3.50rem;
+  height: 3.00rem;
+  border: 1px solid #ffc63a;
+  background: #ffc63a;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+button.search-button:focus {
+  outline: none;
+}
+
+/* Styling to the results component */
+div.results {
+  padding: 20px 20px 20px 20px;
+  margin: 30px 30px 30px 30px;
+  list-style: none;
+  min-height: 250px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+/* Styling to each article tag */
+article.one-restaurant {
+  transition: box-shadow .3s;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: white;
+  padding: 20px 20px;
+  width: 400px;
+  min-height: 150px;
+  margin: 20px 20px;
+  line-height: 20px;
+  color: black;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+article.one-restaurant:hover {
+  box-shadow: 0 0 15px rgba(255, 198, 58, 2);
+}
+
+article.one-restaurant h3 {
+  text-transform: uppercase;
+  font-weight 900;
+}
+
+/* Styling each unordered list in the article tag */
+ul.restaurant-list {
+  list-style: none;
+  padding: 0;
+}
+
+ul.restaurant-list li {
+  font-size: 15px;
+}
+
+/* Styling div that holds the image, tips and gui-score */
+div.image-restaurant {
+  margin: auto;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Styling image in the restaurant */
+img.image-place {
+  width: 100%;
+}
+
+/* Styling guiscore for each restaurant */
+div.guiscore p {
+  padding-bottom: 10px;
+  color: #ed422f;
+}
+
+/* Styling the tips for each restaurant */
+div.tips p {
+  padding-top: 10px;
+  font-size: 15px;
+}
+
+/* Styling the footer */
+footer.footer-tag {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  background-color: white;
+}
+
+/* Styling the scroll up button */
+button.scroll {
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 100px;
+  right: 50px;
+  border-radius: 10px;
+  border: none;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+button.scroll::after {
+  font-family: "FontAwesome";
+  content: '\f106';
+  position: absolute;
+  top: 0;
+  right: -15px;
+  bottom: 0;
+  padding: 0 1em;
+  pointer-events: none;
+  font-size: 30px;
+  line-height: 48px;
+
+}
+
+button.scroll:focus {
+  outline: none;
+}
+
+/* Styling the clear button for the input in search */
+input[type=search] {
+  -webkit-appearance: textfield;
+  padding-right: 30px;
+}
+
+input[type=search]::-webkit-search-cancel-button {
+  -webkit-appearance: searchfield-cancel-button;
+  outline-offset: -2px;
+}
+
+/* Styling the window size when on mobile */
+@media screen and (max-width: 600px) {
+  header.masthead {
+    max-height: 300px;
+  }
+  input.search-input {
+    max-width: 150px;
+  }
+}
+
+

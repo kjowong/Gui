@@ -39,6 +39,7 @@ def get_foursquare(price, **kwargs):
             restaurant['price_range'] = price_range
             rating = place.get('venue').get('rating')
             reviews_count = place.get('venue').get('ratingSignals')
+            restaurant['zip_code'] = postal_code
             restaurant['total_reviews'] = reviews_count
             standardized_rating = round((rating/10), 2)
             restaurant['standard_rating'] = standardized_rating

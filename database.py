@@ -38,7 +38,7 @@ if __name__ == "__main__":
             current_date = datetime.now().strftime('%Y-%m-%d')
             zip_dict = {}
             date_obj = {}
-            zip_dict['zip_code'] = zip_code
+            zip_dict['area_code'] = zip_code
             date_obj['updated_at'] = str(current_date)
             args = price_coord_func(zip_code, price)
             price = args[0]

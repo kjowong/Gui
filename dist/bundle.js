@@ -994,6 +994,8 @@ class Main extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     axios.get(url).then(response => {
       // Store response into an array of objects
       const restaurants = response.data.map(place => place);
+      console.log('REST', restaurants);
+      console.log('----------');
       // Set the state when response is returned
       this.setState({
         results: restaurants
@@ -1189,13 +1191,54 @@ class Results extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     this.props.results.sort(function (firstComposite, secondComposite) {
       return secondComposite.composite - firstComposite.composite;
     });
+
+    let tips_dict;
+    for (let i = 0; i < this.props.results.length; i++) {
+      if (this.props.results[i]['tips_dict']) {
+        tips_dict = this.props.results[i]['tips_dict'];
+      }
+    }
+    console.log('tips', tips_dict);
     // Return the results div
     // Maps each item in results and calls the ResultsItem component to create the list
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
-      { className: 'results' },
-      this.props.results.map((item, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ResultItem, { item: item, key: i })),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ScrollButton, { scrollStepInPx: '50', delayInMs: '16.66' })
+      { className: 'results-info' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'results-pop-info' },
+        'The ',
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'strong',
+          null,
+          tips_dict['subzone']
+        ),
+        ' district has a foodie rating of ',
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'strong',
+          null,
+          tips_dict['popularity']
+        ),
+        ' and a nightlife rating of ',
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'strong',
+          null,
+          tips_dict['nightlife_index']
+        ),
+        '. The most popular restaurant categories in this area are: ',
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null),
+        tips_dict['top_cuisines'].map((item, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'span',
+          { key: i },
+          item
+        )).map((item, index) => [index > 0 && ', ', item])
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'results' },
+        this.props.results.map((item, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ResultItem, { item: item, key: i })),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ScrollButton, { scrollStepInPx: '50', delayInMs: '16.66' })
+      )
     );
   }
 }

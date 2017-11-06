@@ -30,6 +30,8 @@ class Main extends React.Component {
     axios.get(url).then(response => {
       // Store response into an array of objects
       const restaurants = response.data.map(place => place);
+      console.log('REST', restaurants);
+      console.log('----------');
       // Set the state when response is returned
       this.setState({
 		    results: restaurants
@@ -186,14 +188,30 @@ class Results extends React.Component {
     this.props.results.sort(function (firstComposite, secondComposite) {
       return secondComposite.composite - firstComposite.composite;
     });
+
+    let tips_dict;
+    for (let i = 0; i < this.props.results.length; i++) {
+      if (this.props.results[i]['tips_dict']) {
+    	 tips_dict = this.props.results[i]['tips_dict'];
+      }
+    }
+    console.log('tips', tips_dict);
     // Return the results div
     // Maps each item in results and calls the ResultsItem component to create the list
     return (
-      <div className='results'>
-        {
+      <div className='results-info'>
+        <div className='results-pop-info'>
+	    The <strong>{tips_dict['subzone']}</strong> district has a foodie rating of <strong>{tips_dict['popularity']}</strong> and a nightlife rating of <strong>{tips_dict['nightlife_index']}</strong>. The most popular restaurant categories in this area are: <span />
+          {
+	    	tips_dict['top_cuisines'].map((item, i) => <span key={i}>{item}</span>).map((item, index) => [index > 0 && ', ', item ])
+	    }
+        </div>
+        <div className='results'>
+          {
 		this.props.results.map((item, i) => <ResultItem item={item} key={i} />)
 	}
-        <ScrollButton scrollStepInPx='50' delayInMs='16.66' />
+          <ScrollButton scrollStepInPx='50' delayInMs='16.66' />
+        </div>
       </div>
     );
   }

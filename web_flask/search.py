@@ -6,6 +6,7 @@ from flask_cors import CORS
 from flask import request, abort, Flask, jsonify
 from pymongo import MongoClient
 import json
+import pprint
 
 app = Flask(__name__)
 CORS(app)
@@ -19,13 +20,17 @@ def get_listings(zip_code=None):
     client = MongoClient('mongodb://localhost:27017/')
     db = client.guiscore
     my_list = []
-
+    tips_dict = {}
     if request.method == 'GET':
         if zip_code is None:
             abort(400, "Zip code is missing")
         for listings in db.restaurants.find({"zip_code": zip_code}):
             listings['_id'] = str(listings['_id'])
             my_list.append(listings)
+        for tips in db.tips.find({"zip_code": zip_code}):
+            tips['_id'] = str(tips['_id'])
+            tips_dict['tips_dict'] = tips
+            my_list.append(tips_dict)
         if my_list is None:
             abort(400, "No results found")
         return jsonify(my_list)
@@ -38,6 +43,7 @@ def get_listings_with_price(zip_code=None, price=None):
     client = MongoClient('mongodb://localhost:27017/')
     db = client.guiscore
     my_list = []
+    tips_dict = {}
 
     if request.method == 'GET':
         if zip_code is None:
@@ -47,6 +53,12 @@ def get_listings_with_price(zip_code=None, price=None):
         for listings in db.restaurants.find({"zip_code": zip_code, "price_range": int(price)}):
             listings['_id'] = str(listings['_id'])
             my_list.append(listings)
+        for tips in db.tips.find({"zip_code": zip_code}):
+            print('TIPS', tips);
+            print('--------');
+            tips['_id'] = str(tips['_id'])
+            tips_dict['tips_dict'] = tips
+            my_list.append(tips_dict)
         if my_list is None:
             abort(400, "No results found")
         return jsonify(my_list)

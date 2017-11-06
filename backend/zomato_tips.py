@@ -14,9 +14,11 @@ if __name__ == "__main__":
     db = client.guiscore
 
     for zip_code in zip_codes:
-        address = geolocator.geocode(zip_code)
+        address = geolocator.geocode(zip_code, timeout=7)
         response = (zomato.getByGeocode(lan="{}".format(address.latitude), lon="{}".format(address.longitude)))
         area_stats = response.get('popularity')
-        area_stats.update({'zip_code':'{}'.format(zip_code)})
+        if area_stats is None:
+            continue
         print("------Adding Zomato area stats----------", area_stats)
-        db.tips.insert(area_stats)
+        area_stats.update({'zip_code':'{}'.format(zip_code)})
+        db.tips.update({'zip_code': zip_code}, area_stats, upsert=True)

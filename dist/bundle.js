@@ -1029,8 +1029,6 @@ class Main extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
   // Render the main div
   render() {
-    console.log('PQ', this.state.priceQuery);
-
     // If the results if empty, do not mount results component
     if (this.state.results.length === 0) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -1198,8 +1196,6 @@ class Results extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         tipsDict = this.props.results[i]['tips_dict'];
       }
     }
-    console.log('ARRAY', this.props.results);
-
     // Return the results div
     // Maps each item in results and calls the ResultsItem component to create the list
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -1252,7 +1248,6 @@ class ResultItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
     if (!source) {
       source = 'https://i.imgur.com/HgxNiNM.png';
     }
-    console.log(this.props.item);
     // Return the result list
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'article',
@@ -1298,7 +1293,7 @@ class ResultItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', null),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { className: 'w3-light-grey w3-round-xlarge' },
+          { className: 'out-progress-bar w3-round-xlarge' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             {

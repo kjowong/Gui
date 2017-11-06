@@ -180,7 +180,7 @@ article.one-restaurant:hover {
 
 article.one-restaurant h3 {
   text-transform: uppercase;
-  font-weight 900;
+  font-weight: bold;
 }
 
 /* Styling each unordered list in the article tag */
@@ -280,6 +280,11 @@ div.results-pop-info {
   text-align: center;
   padding: 10px;
   font-size: 16px;
+}
+
+/* Styling of the progress bar */
+div.out-progress-bar {
+  background-color: #d6d9db;
 }
 /* Styling the window size when on mobile */
 @media screen and (max-width: 600px) {

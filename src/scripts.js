@@ -237,7 +237,7 @@ class ResultItem extends React.Component {
             </div>
           </div>
           <p />
-          <div className='w3-light-grey w3-round-xlarge'>
+          <div className='out-progress-bar w3-round-xlarge'>
             <div
               className='w3-green w3-round-xlarge'
               style={{width: this.props.item['composite'] + '%'}}>

@@ -65,8 +65,6 @@ class Main extends React.Component {
 
   // Render the main div
   render () {
-    console.log('PQ', this.state.priceQuery);
-
     // If the results if empty, do not mount results component
     if (this.state.results.length === 0) {
       return (
@@ -195,8 +193,6 @@ class Results extends React.Component {
     	 tipsDict = this.props.results[i]['tips_dict'];
       }
     }
-    console.log('ARRAY', this.props.results);
-
     // Return the results div
     // Maps each item in results and calls the ResultsItem component to create the list
     return (
@@ -226,7 +222,6 @@ class ResultItem extends React.Component {
     if (!source) {
       source = 'https://i.imgur.com/HgxNiNM.png';
     }
-    console.log(this.props.item);
     // Return the result list
     return (
       <article className='one-restaurant'>

@@ -45,11 +45,15 @@ def aggregate_yelp(main_list=[]):
                     price = param.get('price')
                     rating = param.get('rating')
                     reviews_count = param.get('review_count')
+                    categories = param.get('categories')
+                    cat_list = []
+                    for title in categories:
+                        cat_list.append(title.get('title'))
                     image = param.get('image_url')
                     coordinates = param.get('coordinates')
                 # Calculating composite score for foursquare, zomato and yelp
                 if item['composite'] != 0:
-                    print("ALREAY COMP", item)
+                    print("ALREADY COMPARED", item)
                     composite_with_weight_fsz = (item['total_reviews'] * item['composite'] * 1.7)
                     yelp_composite_fsz = (reviews_count * 1.3 * (rating/5) * 100)
                     yelp_fsz_add = composite_with_weight_fsz + yelp_composite_fsz
@@ -57,6 +61,9 @@ def aggregate_yelp(main_list=[]):
                     total_yelp_reviews = (reviews_count * 1.3)
                     yelp_reviews_divider = total_fsz_reviews + total_yelp_reviews
                     new_composite_fszy = (yelp_fsz_add / yelp_reviews_divider)
+                    item.update({"phone_num":"{}".format(phone_num)})
+                    item.update({"image_url":"{}".format(image)})
+                    item.setdefault('categories', cat_list)
                     item['composite'] = round(new_composite_fszy, 2)
                     print("COMP-FSZY", item['composite'])
                     print("------------")
@@ -67,6 +74,9 @@ def aggregate_yelp(main_list=[]):
                     foursquare_composite = (item['standard_rating'] * item['total_reviews'] * 1.6)
                     yelp_composite = ((rating/5) * reviews_count * 1.4)
                     foursquare_reviews_weight = (item['total_reviews'] * 1.6)
+                    item.update({"phone_num":"{}".format(phone_num)})
+                    item.update({"image_url":"{}".format(image)})
+                    item.setdefault('categories', cat_list)
                     yelp_reviews_weight = (reviews_count * 1.4)
                     foursquare_yelp_add = (foursquare_composite + yelp_composite)
                     yelp_reviews_fs_divider = (foursquare_reviews_weight + yelp_reviews_weight)
@@ -76,7 +86,7 @@ def aggregate_yelp(main_list=[]):
                     print("------------")
                     item['total_reviews'] = (item['total_reviews'] + reviews_count)
             yelp_list = main_list
-            pprint.pprint(yelp_list)
+            print("YELP_LIST", yelp_list)
         return yelp_list
 
     else:

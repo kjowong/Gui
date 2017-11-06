@@ -214,6 +214,9 @@ div.guiscore p {
 }
 
 /* Styling the tips for each restaurant */
+div.tips {
+  padding: 5px;
+}
 div.tips p {
   padding-top: 10px;
   font-size: 15px;
@@ -272,6 +275,12 @@ input[type=search]::-webkit-search-cancel-button {
   outline-offset: -2px;
 }
 
+/* Styling Results Info before article tags */
+div.results-pop-info {
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+}
 /* Styling the window size when on mobile */
 @media screen and (max-width: 600px) {
   header.masthead {

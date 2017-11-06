@@ -1191,14 +1191,15 @@ class Results extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     this.props.results.sort(function (firstComposite, secondComposite) {
       return secondComposite.composite - firstComposite.composite;
     });
-
-    let tips_dict;
+    // Grabs the tips dict and store in a variable
+    let tipsDict;
     for (let i = 0; i < this.props.results.length; i++) {
       if (this.props.results[i]['tips_dict']) {
-        tips_dict = this.props.results[i]['tips_dict'];
+        tipsDict = this.props.results[i]['tips_dict'];
       }
     }
-    console.log('tips', tips_dict);
+    console.log('ARRAY', this.props.results);
+
     // Return the results div
     // Maps each item in results and calls the ResultsItem component to create the list
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -1211,23 +1212,23 @@ class Results extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'strong',
           null,
-          tips_dict['subzone']
+          tipsDict['subzone']
         ),
         ' district has a foodie rating of ',
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'strong',
           null,
-          tips_dict['popularity']
+          tipsDict['popularity']
         ),
         ' and a nightlife rating of ',
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'strong',
           null,
-          tips_dict['nightlife_index']
+          tipsDict['nightlife_index']
         ),
         '. The most popular restaurant categories in this area are: ',
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null),
-        tips_dict['top_cuisines'].map((item, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        tipsDict['top_cuisines'].map((item, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'span',
           { key: i },
           item
@@ -1236,7 +1237,7 @@ class Results extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'results' },
-        this.props.results.map((item, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ResultItem, { item: item, key: i })),
+        this.props.results.filter(i => !i.tips_dict).map((item, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ResultItem, { item: item, key: i })),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ScrollButton, { scrollStepInPx: '50', delayInMs: '16.66' })
       )
     );
@@ -1251,6 +1252,7 @@ class ResultItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
     if (!source) {
       source = 'https://i.imgur.com/HgxNiNM.png';
     }
+    console.log(this.props.item);
     // Return the result list
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'article',

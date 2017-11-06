@@ -188,28 +188,29 @@ class Results extends React.Component {
     this.props.results.sort(function (firstComposite, secondComposite) {
       return secondComposite.composite - firstComposite.composite;
     });
-
-    let tips_dict;
+    // Grabs the tips dict and store in a variable
+    let tipsDict;
     for (let i = 0; i < this.props.results.length; i++) {
       if (this.props.results[i]['tips_dict']) {
-    	 tips_dict = this.props.results[i]['tips_dict'];
+    	 tipsDict = this.props.results[i]['tips_dict'];
       }
     }
-    console.log('tips', tips_dict);
+    console.log('ARRAY', this.props.results);
+
     // Return the results div
     // Maps each item in results and calls the ResultsItem component to create the list
     return (
       <div className='results-info'>
         <div className='results-pop-info'>
-	    The <strong>{tips_dict['subzone']}</strong> district has a foodie rating of <strong>{tips_dict['popularity']}</strong> and a nightlife rating of <strong>{tips_dict['nightlife_index']}</strong>. The most popular restaurant categories in this area are: <span />
+	    The <strong>{tipsDict['subzone']}</strong> district has a foodie rating of <strong>{tipsDict['popularity']}</strong> and a nightlife rating of <strong>{tipsDict['nightlife_index']}</strong>. The most popular restaurant categories in this area are: <span />
           {
-	    	tips_dict['top_cuisines'].map((item, i) => <span key={i}>{item}</span>).map((item, index) => [index > 0 && ', ', item ])
-	    }
+	    	tipsDict['top_cuisines'].map((item, i) => <span key={i}>{item}</span>).map((item, index) => [index > 0 && ', ', item ])
+	  }
         </div>
         <div className='results'>
           {
-		this.props.results.map((item, i) => <ResultItem item={item} key={i} />)
-	}
+		this.props.results.filter(i => !i.tips_dict).map((item, i) => <ResultItem item={item} key={i} />)
+ 	  }
           <ScrollButton scrollStepInPx='50' delayInMs='16.66' />
         </div>
       </div>
@@ -225,6 +226,7 @@ class ResultItem extends React.Component {
     if (!source) {
       source = 'https://i.imgur.com/HgxNiNM.png';
     }
+    console.log(this.props.item);
     // Return the result list
     return (
       <article className='one-restaurant'>

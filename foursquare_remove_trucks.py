@@ -18,7 +18,7 @@ def get_foursquare(price, **kwargs):
         v='20171110',
         ll = '{}, {}'.format(kwargs.get('latitude'), kwargs.get('longitude')),
         section = 'food',
-        limit = 2,
+        limit = 5,
         price = price
     )
 
@@ -29,6 +29,7 @@ def get_foursquare(price, **kwargs):
     for post in fs_list:
         posts = (post.get('items'))
         for place in posts:
+            print("FOURSQUARE", place)
             name = (place.get('venue').get('name'))
             address_field = place.get('venue').get('location')
             postal_code = address_field.get('postalCode')
@@ -36,6 +37,12 @@ def get_foursquare(price, **kwargs):
             city = (address_field.get('formattedAddress')[1]).replace(",", "")[:-5]
             restaurant = {}
             price_range = place.get('venue').get('price').get('tier')
+            tips = place.get('tips')
+            if tips is not None:
+                for items in tips:
+                    tip = items['text']
+            if tip is not None:    
+                restaurant['tip'] = tip
             rating = place.get('venue').get('rating')
             if (rating is None):
                 break

@@ -11,11 +11,14 @@ The purpose of this web application is to provide users with a composite score f
 ## Environment
 
 * __OS:__ Ubuntu 14.04 LTS
-* __language:__ Python 3.4.3
+* __frontend-language:__ Reactjs v16.0
+* __backend-language:__ Python 3.4.3
 * __web server:__ nginx/1.4.6
-* __application server:__ Reactjs v16.0
+* __application server:__ Flask v0.12.2
 * __web server gateway:__ gunicorn (version 19.7.1)
 * __database:__ mongod v3.4.9
+* __module_bunlder:__ webpack v3.8.1
+* __react_compiler:__ babel v1.4.0
 
 # TO EDIT
 * __documentation:__ Swagger (flasgger==0.6.6)
@@ -44,13 +47,16 @@ To setup the proper environment to deploy this application, run the following sc
 
 ## Web Flask Files
 `search.py` - contains all routes for web application:
-`/search/<zip_code>` -> returns all records with the provied zip code
-`/search/<zip_code>/<price>` -> returns all records with the provide price range under the provided zip code
+* `/search/<zip_code>` -> returns all records with the provied zip code
+* `/search/<zip_code>/<price>` -> returns all records with the provide price range under the provided zip code
 
 ## Src Files
-`scripts.js` - Reactjs code that displays the content dynamtically.
+`scripts.js` - Reactjs code that pulls from RESTful API created by Flask and displays the content dynamtically.
 
 ## Dist Files
+Static Directory - contains CSS directory with stylesheets and img directory with all images
+* `index/html` - HTML markup file
+* `bundle.js` - script file that contains the bundle created with webpack
 
 ## Backend
 

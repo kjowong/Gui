@@ -4,7 +4,7 @@
 
 ## Description
 
-The purpose of this web application is to provider users with a composite score for the top restaurants in the area, with the user providing their zip code and price range desired (optional). 
+The purpose of this web application is to provide users with a composite score for the top restaurants in the area, with the user providing their zip code and price range desired (optional). 
 
 ##### Currently for San Francisco Only
 
@@ -36,15 +36,19 @@ Summary of what repository contains:
 | .babelrc     | contains configuration for Babel            |
 | **web_flask** | contain flask application to run mongodb database |
 | **src**     | contains React scripts for for front-end |
-| **node_modules** | contains modules needed to run Reactjs as modules |
 | **dist** | contains **static** directory, bundle.js and index.html |
 | **backend**     | contains backend modules in Python 3.4 |
 
+## Environment Setup
+To setup the proper environment to deploy this application, run the following scripts:
 
 ## Web Flask Files
-
+`search.py` - contains all routes for web application:
+`/search/<zip_code>` -> returns all records with the provied zip code
+`/search/<zip_code>/<price>` -> returns all records with the provide price range under the provided zip code
 
 ## Src Files
+`scripts.js` - Reactjs code that displays the content dynamtically.
 
 ## Dist Files
 

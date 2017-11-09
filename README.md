@@ -54,11 +54,26 @@ To setup the proper environment to deploy this application, run the following sc
 `scripts.js` - Reactjs code that pulls from RESTful API created by Flask and displays the content dynamtically.
 
 ## Dist Files
-Static Directory - contains CSS directory with stylesheets and img directory with all images
+Static Directory:
+* CSS directory with stylesheets
+* SCSS directory with scss stylesheets
+* img directory with all images
+* Js directory with bootstrap css functionality
+* Vendor directory with bootstrap style dependencies
+
+Other Files:
 * `index/html` - HTML markup file
 * `bundle.js` - script file that contains the bundle created with webpack
 
 ## Backend
+* `database.py` - Functionn that takes in what was returned from `new_yelp.py` and creates a database
+* `foursquare_remove_trucks.py` - Function that calls the FourSquare Api and returns a list of restaurants to pass to `match_list.py`(currently does not support food trucks with no location)
+* `match_list.py` - Function that takes in both lists from FourSquare and Zomato to find a match, returns a list to pass to `new_yelp.py`
+* `new_yelp.py` - Function that takes in the matched list, calls the yelp api to create a new composite score
+* `price_coord_passer.py` - Function that takes in the arguments passed by the user (zip code and price) to pass to FourSquare API
+* `query_listing.py` - Function that queries the database based on the user's inputs: Either just a zip code or if they included price
+* `zomato_name_addr.py` - Function that calls the Zomato API and returns a list of restaurants to pass to `match_list.py`
+* `zomato_tips.py` - Function that calls the Zomato API and grabs the tips provided in regards to the zip code
 
 ## Setup
 

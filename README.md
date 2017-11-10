@@ -20,15 +20,6 @@ The purpose of this web application is to provide users with a composite score f
 * __module_bunlder:__ webpack v3.8.1
 * __react_compiler:__ babel v1.4.0
 
-# TO EDIT
-* __documentation:__ Swagger (flasgger==0.6.6)
-* __style:__
-  * __python:__ PEP 8 (v. 1.7.0)
-  * __web static:__ [W3C Validator](https://validator.w3.org/)
-  * __bash:__ ShellCheck 0.3.3
-  * __javascript:__ semistandard
-
-
 ## Repository Breakdown
 Summary of what repository contains:
 
@@ -41,9 +32,13 @@ Summary of what repository contains:
 | **src**     | contains React scripts for for front-end |
 | **dist** | contains **static** directory, bundle.js and index.html |
 | **backend**     | contains backend modules in Python 3.4 |
+| **install_scripts**     | contains script to install all dependencies and packages |
 
 ## Environment Setup
 To setup the proper environment to deploy this application, run the following scripts:
+
+## Data Flow
+<img src="https://i.imgur.com/bTAqgZq.jpg" width="950" height=auto />
 
 ## Web Flask Files
 `search.py` - contains all routes for web application:
@@ -75,7 +70,13 @@ Other Files:
 * `zomato_name_addr.py` - Function that calls the Zomato API and returns a list of restaurants to pass to `match_list.py`
 * `zomato_tips.py` - Function that calls the Zomato API and grabs the tips provided in regards to the zip code
 
-## Setup
+## Backend
+* `install_packages.sh` - script to install all packages necessary
+
+To use the script, run it like so
+```
+./install_packages.sh
+```
 
 ## Testing
 

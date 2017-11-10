@@ -79,11 +79,13 @@ To use the script, run it like so
 ```
 
 ## Testing
-
-### `unittest`
+To be added
 
 ## Notes
 This project is for educational purposes only
+
+## To-Dos
+User Authentication
 
 ## Known Bugs
 There are no known bugs at the time.

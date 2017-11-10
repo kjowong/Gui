@@ -70,7 +70,7 @@ Other Files:
 * `zomato_name_addr.py` - Function that calls the Zomato API and returns a list of restaurants to pass to `match_list.py`
 * `zomato_tips.py` - Function that calls the Zomato API and grabs the tips provided in regards to the zip code
 
-## Backend
+## Install_Scripts
 * `install_packages.sh` - script to install all packages necessary
 
 To use the script, run it like so

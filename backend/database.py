@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 from price_coord_passer import price_coord_func
 from foursquare_remove_trucks import get_foursquare
 from zomato_name_addr import get_zomato
@@ -18,7 +19,7 @@ def create_database(yelp_list=[], *args):
         *args: takes in the arguments, price and coordinates
     """
 
-    #connects to Mongo Database and creates database called guiscore
+    #Connects to Mongo Database server to connect to database called guiscore
     client = MongoClient('mongodb://localhost:27017/')
     db = client.guiscore
 
@@ -30,9 +31,11 @@ def create_database(yelp_list=[], *args):
             print("------")
             print("ARG2 - DB.py", args[1])
             match_key = {}
+            print("------")
             print("REST DB.py", listing.get('location'))
             match_key['location'] = listing.get('location')
             match_key['name'] = listing.get('name')
+            print("------")
             print("NAME DB.py", listing.get('name'))
             result = db.restaurants.update(match_key, listing, upsert=True)
 
@@ -40,8 +43,6 @@ def create_database(yelp_list=[], *args):
 if __name__ == "__main__":
     #List of all zip codes in San Francisco are
     zip_codes = ['94130', '94133', '94111', '94123', '94129', '94121', '94118', '94115', '94109', '94108', '94104', '94105', '94102', '94103', '94158', '94107', '94110', '94114', '94117', '94124', '94134', '94112', '94127', '94131', '94116', '94132', '94122']
-#    zip_codes = ['94134']
-#   price_range = ['2', '3', '4']
 
     #The price ranges
     price_range = ['1', '2', '3', '4']

@@ -7,6 +7,10 @@ import pprint
 import sys
 from sys import argv
 from price_coord_passer import price_coord_func
+import os
+
+FOURSQUARE_CLIENT_ID = os.environ.get('FOURSQUARE_CLIENT_ID')
+FOURSQUARE_CLIENT_SECRET = os.environ.get('FOURSQUARE_CLIENT_SECRET')
 
 def get_foursquare(price, **kwargs):
     """
@@ -17,13 +21,13 @@ def get_foursquare(price, **kwargs):
 
     # Foursquare endpoint and bing key to standardized addresses
     url = 'https://api.foursquare.com/v2/venues/explore'
-    bing_key = "bNV4gwzuDF0BY7hRBr2D~SwYlwf_NvSxlbZ36oGsTdA~AthfnABkus6e2oSBb4W9Q9_7yHrFh1cHbreVFmsPad2apAgjYqLYZi8E2iSyiJk-"
+    bing_key = os.environ.get('BING_API_KEY')
     bing = geocoders.Bing(bing_key)
 
     # Foursquare parameters to pass into api
     params = dict(
-        client_id='ODAOUA2ZUGYKSAQMGSED4HVLAGQJZF4LU1FNEESGR2KY20CL',
-        client_secret='TBGFJYKBYEUHORFJH3MCBB2DKP1SFBJ4ZUK2T3TVHGKBIHYD',
+        client_id=FOURSQUARE_CLIENT_ID,
+        client_secret=FOURSQUARE_CLIENT_SECRET,
         v='20171210',
         ll = '{}, {}'.format(kwargs.get('latitude'), kwargs.get('longitude')),
         section = 'food',

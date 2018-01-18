@@ -8,6 +8,7 @@ import requests, json
 from pymongo import MongoClient
 import pprint
 import sys
+import os
 
 def aggregate_yelp(main_list=[]):
     """
@@ -16,8 +17,8 @@ def aggregate_yelp(main_list=[]):
     """
 
     # Yelp credentials
-    client_id = 'SQqV-EaSklWJV9089z-LRg'
-    client_secret = 'QkIzkk76Lv3wOWKK8lSgU794edzjo96sKfFrDolT4c6hHWivZfoZU1WKDLof9WII'
+    client_id = os.environ.get('YELP_CLIENT_ID')
+    client_secret = os.environ.get('YELP_SECRET_ID')
     data = {'grant_type': 'client_credentials',
             'client_id': client_id,
             'client_secret': client_secret}

@@ -2,6 +2,7 @@
 
 import sys
 from geopy import geocoders
+import os
 
 def price_coord_func(zip_var, price_tier):
     """
@@ -11,7 +12,7 @@ def price_coord_func(zip_var, price_tier):
     """
 
     # Bing key to use bing to standardized addresses
-    bing_key = "bNV4gwzuDF0BY7hRBr2D~SwYlwf_NvSxlbZ36oGsTdA~AthfnABkus6e2oSBb4W9Q9_7yHrFh1cHbreVFmsPad2apAgjYqLYZi8E2iSyiJk-"
+    bing_key = os.environ.get('BING_API_KEY')
     geolocator = geocoders.Bing(bing_key)
     coordinates = {}
 

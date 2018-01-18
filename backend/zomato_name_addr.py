@@ -4,6 +4,9 @@ import json, requests
 from geopy import geocoders
 from pyzomato import Pyzomato
 import pprint
+import os
+
+ZOMATO_API_KEY = os.environ.get('ZOMATO_API_KEY')
 
 def get_zomato():
     """
@@ -11,14 +14,14 @@ def get_zomato():
     """
 
     # Bing key to standardized the addresses
-    bing_key = "bNV4gwzuDF0BY7hRBr2D~SwYlwf_NvSxlbZ36oGsTdA~AthfnABkus6e2oSBb4W9Q9_7yHrFh1cHbreVFmsPad2apAgjYqLYZi8E2iSyiJk-"
+    bing_key = os.environ.get('BING_API_KEY')
     bing = geocoders.Bing(bing_key)
 
     # Empty list to add restaurants in
     yelp_params = []
 
     # Use Pyzomato to make requests to zomato api
-    p = Pyzomato('a27dcc3db4574a4ae90e9852091e736c')
+    p = Pyzomato(ZOMATO_API_KEY)
 
     # Location response
     response = (p.getByGeocode(lan="37.792085", lon="-122.399368"))

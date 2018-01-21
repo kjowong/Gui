@@ -6,6 +6,8 @@
 
 The purpose of this web application is to provide users with a composite score for the top restaurants in the area, with the user providing their zip code and price range desired (optional). 
 
+## Service Url: http://www.guiscore.online/
+
 ##### Currently for San Francisco Only
 
 ## Environment
